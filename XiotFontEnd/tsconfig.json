@@ -14,7 +14,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": { // 新增节点，给路径重命名
+      "@app": [ "src/app" ],   // app 文件夹
+      "@src/*": [ "src/*" ],   // app 文件夹
+      "@app/*": [ "src/app/*" ], // src/app 所有子目录和文件夹
+      "@service/*": [ "src/app/services/*" ], // src/app 所有子目录和文件夹
+      "@modules/*": [ "src/app/modules/*" ] // src/app/modules 所有子目录和文件夹
+    },
+
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
