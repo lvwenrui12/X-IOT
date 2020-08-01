@@ -1,10 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeviceManageModule } from '@modules/device-manage/device-manage.module';
-import { VisualizedModule } from '@modules/visualized/visualized.module'
+import { VisualizedModule } from '@modules/visualized/visualized.module';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
@@ -14,22 +18,15 @@ import { VisualizedModule } from '@modules/visualized/visualized.module'
     DeviceManageModule,
     VisualizedModule,
     AppRoutingModule,
-    RouterModule.forRoot([{
-      path: 'device', loadChildren: '@modules/device-manage/device-manage.module#DeviceManageModule'
-
-    },
-    {
-      path: 'visualized', loadChildren: './modules/visualized/visualized.module#VisualizedModule'
-
-    },
-    {
-      path: '',
-      redirectTo: 'device',
-      pathMatch: 'full'
-    }
-    ])
+    NzMenuModule,
+    NgZorroAntdModule,
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  providers: [
+    { provide: NZ_I18N, useValue: zh_CN },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
